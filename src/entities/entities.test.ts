@@ -1,5 +1,7 @@
+import JSBI from 'jsbi'
 import invariant from 'tiny-invariant'
-import { ChainId, WETH as _WETH, TradeType, Rounding, Token, TokenAmount, Pair, Route, Trade } from '../src'
+import { ChainId, WETH9 as _WETH9, TradeType, Rounding, Token, TokenAmount } from 'easybake-sdk-core'
+import { Pair, Route, Trade } from '../index'
 
 const ADDRESSES = [
   '0x0000000000000000000000000000000000000001',
@@ -7,15 +9,15 @@ const ADDRESSES = [
   '0x0000000000000000000000000000000000000003'
 ]
 const CHAIN_ID = ChainId.RINKEBY
-const WETH = _WETH[ChainId.RINKEBY]
+const WETH9 = _WETH9[ChainId.RINKEBY]
 const DECIMAL_PERMUTATIONS: [number, number, number][] = [
   [0, 0, 0],
   [0, 9, 18],
   [18, 18, 18]
 ]
 
-function decimalize(amount: number, decimals: number): bigint {
-  return BigInt(amount) * BigInt(10) ** BigInt(decimals)
+function decimalize(amount: number, decimals: number): JSBI {
+  return JSBI.multiply(JSBI.BigInt(amount), JSBI.exponentiate(JSBI.BigInt(10), JSBI.BigInt(decimals)))
 }
 
 describe('entities', () => {
@@ -44,7 +46,7 @@ describe('entities', () => {
           ),
           new Pair(
             new TokenAmount(tokens[2], decimalize(1, tokens[2].decimals)),
-            new TokenAmount(WETH, decimalize(1234, WETH.decimals))
+            new TokenAmount(WETH9, decimalize(1234, WETH9.decimals))
           )
         ]
       })
@@ -53,9 +55,9 @@ describe('entities', () => {
       it('Route', () => {
         route = new Route(pairs, tokens[0])
         expect(route.pairs).toEqual(pairs)
-        expect(route.path).toEqual(tokens.concat([WETH]))
+        expect(route.path).toEqual(tokens.concat([WETH9]))
         expect(route.input).toEqual(tokens[0])
-        expect(route.output).toEqual(WETH)
+        expect(route.output).toEqual(WETH9)
       })
 
       it('Price:Route.midPrice', () => {
@@ -104,13 +106,13 @@ describe('entities', () => {
             [
               new Pair(
                 new TokenAmount(tokens[1], decimalize(5, tokens[1].decimals)),
-                new TokenAmount(WETH, decimalize(10, WETH.decimals))
+                new TokenAmount(WETH9, decimalize(10, WETH9.decimals))
               )
             ],
             tokens[1]
           )
           const inputAmount = new TokenAmount(tokens[1], decimalize(1, tokens[1].decimals))
-          const expectedOutputAmount = new TokenAmount(WETH, '1662497915624478906')
+          const expectedOutputAmount = new TokenAmount(WETH9, '1662497915624478906')
           const trade = new Trade(route, inputAmount, TradeType.EXACT_INPUT)
           expect(trade.route).toEqual(route)
           expect(trade.tradeType).toEqual(TradeType.EXACT_INPUT)
@@ -129,7 +131,7 @@ describe('entities', () => {
         })
 
         it('TradeType.EXACT_OUTPUT', () => {
-          const outputAmount = new TokenAmount(WETH, '1662497915624478906')
+          const outputAmount = new TokenAmount(WETH9, '1662497915624478906')
           const expectedInputAmount = new TokenAmount(tokens[1], decimalize(1, tokens[1].decimals))
           const trade = new Trade(route, outputAmount, TradeType.EXACT_OUTPUT)
           expect(trade.route).toEqual(route)
@@ -155,9 +157,11 @@ describe('entities', () => {
                 new Pair(
                   new TokenAmount(tokens[1], decimalize(1, tokens[1].decimals)),
                   new TokenAmount(
-                    WETH,
-                    decimalize(10, WETH.decimals) +
-                      (tokens[1].decimals === 9 ? BigInt('30090280812437312') : BigInt('30090270812437322'))
+                    WETH9,
+                    JSBI.add(
+                      decimalize(10, WETH9.decimals),
+                      tokens[1].decimals === 9 ? JSBI.BigInt('30090280812437312') : JSBI.BigInt('30090270812437322')
+                    )
                   )
                 )
               ],
@@ -174,7 +178,7 @@ describe('entities', () => {
       })
 
       it('TokenAmount', () => {
-        const amount = new TokenAmount(WETH, '1234567000000000000000')
+        const amount = new TokenAmount(WETH9, '1234567000000000000000')
         expect(amount.toExact()).toEqual('1234.567')
         expect(amount.toExact({ groupSeparator: ',' })).toEqual('1,234.567')
       })

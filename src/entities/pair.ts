@@ -1,50 +1,34 @@
-import { Price } from './fractions/price'
-import { TokenAmount } from './fractions/tokenAmount'
+import { BigintIsh, ChainId, Price, sqrt, Token, TokenAmount } from 'easybake-sdk-core'
 import invariant from 'tiny-invariant'
 import JSBI from 'jsbi'
 import { pack, keccak256 } from '@ethersproject/solidity'
 import { getCreate2Address } from '@ethersproject/address'
 
-import {
-  BigintIsh,
-  FACTORY_ADDRESS,
-  INIT_CODE_HASH,
-  MINIMUM_LIQUIDITY,
-  ZERO,
-  ONE,
-  FIVE,
-  _997,
-  _1000,
-  ChainId
-} from '../constants'
-import { sqrt, parseBigintIsh } from '../utils'
+import { FACTORY_ADDRESS, INIT_CODE_HASH, MINIMUM_LIQUIDITY, FIVE, _997, _1000, ONE, ZERO } from '../constants'
 import { InsufficientReservesError, InsufficientInputAmountError } from '../errors'
-import { Token } from './token'
 
-let PAIR_ADDRESS_CACHE: { [token0Address: string]: { [token1Address: string]: string } } = {}
-
+export const computePairAddress = ({
+  factoryAddress,
+  tokenA,
+  tokenB
+}: {
+  factoryAddress: string
+  tokenA: Token
+  tokenB: Token
+}): string => {
+  const [token0, token1] = tokenA.sortsBefore(tokenB) ? [tokenA, tokenB] : [tokenB, tokenA] // does safety checks
+  return getCreate2Address(
+    factoryAddress,
+    keccak256(['bytes'], [pack(['address', 'address'], [token0.address, token1.address])]),
+    INIT_CODE_HASH
+  )
+}
 export class Pair {
   public readonly liquidityToken: Token
   private readonly tokenAmounts: [TokenAmount, TokenAmount]
 
   public static getAddress(tokenA: Token, tokenB: Token): string {
-    const tokens = tokenA.sortsBefore(tokenB) ? [tokenA, tokenB] : [tokenB, tokenA] // does safety checks
-
-    if (PAIR_ADDRESS_CACHE?.[tokens[0].address]?.[tokens[1].address] === undefined) {
-      PAIR_ADDRESS_CACHE = {
-        ...PAIR_ADDRESS_CACHE,
-        [tokens[0].address]: {
-          ...PAIR_ADDRESS_CACHE?.[tokens[0].address],
-          [tokens[1].address]: getCreate2Address(
-            FACTORY_ADDRESS,
-            keccak256(['bytes'], [pack(['address', 'address'], [tokens[0].address, tokens[1].address])]),
-            INIT_CODE_HASH
-          )
-        }
-      }
-    }
-
-    return PAIR_ADDRESS_CACHE[tokens[0].address][tokens[1].address]
+    return computePairAddress({ factoryAddress: FACTORY_ADDRESS, tokenA, tokenB })
   }
 
   public constructor(tokenAmountA: TokenAmount, tokenAmountB: TokenAmount) {
@@ -55,8 +39,8 @@ export class Pair {
       tokenAmounts[0].token.chainId,
       Pair.getAddress(tokenAmounts[0].token, tokenAmounts[1].token),
       18,
-      'UNI-V2',
-      'Uniswap V2'
+      'DOUGH-V2',
+      'DLP'
     )
     this.tokenAmounts = tokenAmounts as [TokenAmount, TokenAmount]
   }
@@ -95,7 +79,7 @@ export class Pair {
   /**
    * Returns the chain ID of the tokens in the pair.
    */
-  public get chainId(): ChainId {
+  public get chainId(): ChainId | number {
     return this.token0.chainId
   }
 
@@ -203,7 +187,7 @@ export class Pair {
       totalSupplyAdjusted = totalSupply
     } else {
       invariant(!!kLast, 'K_LAST')
-      const kLastParsed = parseBigintIsh(kLast)
+      const kLastParsed = JSBI.BigInt(kLast)
       if (!JSBI.equal(kLastParsed, ZERO)) {
         const rootK = sqrt(JSBI.multiply(this.reserve0.raw, this.reserve1.raw))
         const rootKLast = sqrt(kLastParsed)
