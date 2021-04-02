@@ -13,7 +13,7 @@ git clone https://github.com/easybakeswap/easybakeswap-sdk.git
 Move into the easybakeswap-sdk working directory
 
 ```sh
-cd easybakeswap-sdk/
+cd easybake-swap-sdk/
 ```
 
 Install dependencies
