@@ -49,5 +49,6 @@ Ran all test suites.
 ```
 
 ## Factory Address and Code Hash (on Rinkeby)
-- FACTORY_ADDRESS = "0xd294ca2800957021dc486f1959af022b0b4fccab"; 
-= INIT_CODE_HASH = "0x2fa24360e94016b16eb8d287f3dbc67b96423c6acdb8590dd8e1f007fb6848d9";
+
+- FACTORY_ADDRESS = "0xd294ca2800957021dc486f1959af022b0b4fccab";
+  = INIT_CODE_HASH = "0x2fa24360e94016b16eb8d287f3dbc67b96423c6acdb8590dd8e1f007fb6848d9";
