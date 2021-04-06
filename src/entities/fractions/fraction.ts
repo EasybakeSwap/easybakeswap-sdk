@@ -5,7 +5,6 @@ import _Big, { RoundingMode } from 'big.js'
 import toFormat from 'toformat'
 import { parseBigintIsh } from '../../utils/parseBigintIsh'
 
-
 import { BigintIsh, Rounding, ONE } from '../../constants'
 
 const Decimal = toFormat(_Decimal)
