@@ -36,7 +36,7 @@ $ tsdx test
  PASS  test/sortedInsert.test.ts
  PASS  test/validateAndParseAddress.test.ts
  PASS  test/token.test.ts
- PASS  src/entities/fractions/currencyAmount.test.ts
+ PASS  test/currencyAmount.test.ts
  PASS  test/fraction.test.ts
  PASS  test/constants.test.ts
  PASS  test/route.test.ts

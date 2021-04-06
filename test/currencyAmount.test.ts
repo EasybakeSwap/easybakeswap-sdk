@@ -1,8 +1,8 @@
 import JSBI from 'jsbi'
-import { ChainId, MaxUint256 } from '../../constants'
-import { Token } from '../token'
-import CurrencyAmount from './currencyAmount'
-import TokenAmount from './tokenAmount'
+import { ChainId, MaxUint256 } from '../src/constants'
+import { Token } from '../src/entities/token'
+import CurrencyAmount from '../src/entities/fractions/currencyAmount'
+import TokenAmount from '../src/entities/fractions/tokenAmount'
 
 describe('CurrencyAmount', () => {
   const ADDRESS_ONE = '0x0000000000000000000000000000000000000001'
