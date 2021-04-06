@@ -1,4 +1,7 @@
-import { Token, WETH9, ChainId, TokenAmount, ETHER } from 'easybake-sdk-core'
+import { ChainId } from '../src/constants'
+import { ETHER } from '../src/entities/currency'
+import { TokenAmount } from '../src/entities/fractions'
+import { WETH9, Token } from '../src/entities/token'
 import { Pair, Route } from '../src/entities/index'
 
 describe('Route', () => {

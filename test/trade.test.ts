@@ -2,7 +2,10 @@ import { Pair } from '../src/entities/pair'
 import { Route } from '../src/entities/route'
 import { Trade } from '../src/entities/trade'
 import JSBI from 'jsbi'
-import { ChainId, ETHER, CurrencyAmount, Percent, Token, TokenAmount, TradeType, WETH9 } from 'easybake-sdk-core'
+import { ChainId, TradeType } from '../src/constants'
+import { ETHER } from '../src/entities/currency'
+import { CurrencyAmount, TokenAmount, Percent } from '../src/entities/fractions'
+import { WETH9, Token } from '../src/entities/token'
 
 describe('Trade', () => {
   const token0 = new Token(ChainId.MAINNET, '0x0000000000000000000000000000000000000001', 18, 't0')

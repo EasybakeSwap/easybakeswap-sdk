@@ -2,7 +2,11 @@ import JSBI from 'jsbi'
 import { Pair, Route, Trade } from '../src/entities'
 import { Router } from '../src/router'
 import invariant from 'tiny-invariant'
-import { ChainId, CurrencyAmount, ETHER, Percent, Token, TokenAmount, WETH9 } from 'easybake-sdk-core'
+import { ChainId } from '../src/constants'
+import { ETHER } from '../src/entities/currency'
+import { CurrencyAmount, TokenAmount, Percent } from '../src/entities/fractions'
+import { WETH9, Token } from '../src/entities/token'
+
 
 function checkDeadline(deadline: string[] | string): void {
   expect(typeof deadline).toBe('string')

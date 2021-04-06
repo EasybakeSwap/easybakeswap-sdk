@@ -1,6 +1,8 @@
-import { ChainId, Token, TokenAmount, WETH9, Price } from 'easybake-sdk-core'
+import { ChainId } from '../src/constants'
 import { InsufficientInputAmountError } from '../src/errors'
+import { Price, TokenAmount } from '../src/entities/fractions'
 import { computePairAddress, Pair } from '../src/entities/pair'
+import { WETH9, Token } from '../src/entities/token'
 
 describe('computePairAddress', () => {
   it('should correctly compute the pool address', () => {

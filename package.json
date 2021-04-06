@@ -1,7 +1,7 @@
 {
   "name": "easybakeswap-sdk",
   "license": "MIT",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "🛠 An SDK for building applications on top of EasyBakeSwap",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -27,14 +27,16 @@
     "@ethersproject/contracts": "^5.1.0",
     "@ethersproject/providers": "^5.1.0",
     "@ethersproject/solidity": "^5.0.0",
-    "easybake-sdk-core": "^1.1.0",
+    "decimal.js-light": "^2.5.1",
+    "easybake-swap-core": "^0.2.1",
+    "jsbi": "^3.1.4",
     "tiny-invariant": "^1.1.0",
-    "tiny-warning": "^1.0.3"
+    "tiny-warning": "^1.0.3",
+    "toformat": "^2.0.0"
   },
   "devDependencies": {
     "@types/big.js": "^4.0.5",
     "@types/jest": "^24.0.25",
-    "easybake-swap-core": "^0.2.1",
     "tsdx": "^0.14.1"
   },
   "engines": {

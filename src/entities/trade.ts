@@ -1,19 +1,11 @@
-import {
-  ChainId,
-  Currency,
-  CurrencyAmount,
-  currencyEquals,
-  ETHER,
-  Fraction,
-  Percent,
-  Price,
-  sortedInsert,
-  Token,
-  TokenAmount,
-  TradeType,
-  WETH9
-} from 'easybake-sdk-core'
-import { ONE, ZERO } from '../constants'
+import { ETHER, Currency } from './currency'
+import CurrencyAmount from './fractions/currencyAmount'
+import TokenAmount from './fractions/tokenAmount'
+import { currencyEquals, Token, WETH9 } from './token'
+import sortedInsert from '../utils/sortedInsert'
+import { Percent, Price, Fraction } from './fractions'
+
+import { ChainId, TradeType, ONE, ZERO } from '../constants'
 import invariant from 'tiny-invariant'
 
 import { Pair } from './pair'

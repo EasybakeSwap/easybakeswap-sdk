@@ -1,4 +1,9 @@
-import { ChainId, Currency, ETHER, Price, Token, WETH9 } from 'easybake-sdk-core'
+import { WETH9 } from './token'
+
+import { ChainId } from '../constants'
+import { Currency, ETHER } from './currency'
+import { Price } from './fractions'
+import { Token } from './token'
 import invariant from 'tiny-invariant'
 
 import { Pair } from './pair'

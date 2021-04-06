@@ -3,10 +3,8 @@ import invariant from 'tiny-invariant'
 import _Decimal from 'decimal.js-light'
 import _Big, { RoundingMode } from 'big.js'
 import toFormat from 'toformat'
-import { parseBigintIsh } from '../../utils/parseBigintIsh'
 
-
-import { BigintIsh, Rounding, ONE } from '../../constants'
+import { BigintIsh, Rounding } from '../../constants'
 
 const Decimal = toFormat(_Decimal)
 const Big = toFormat(_Big)
@@ -27,9 +25,9 @@ export default class Fraction {
   public readonly numerator: JSBI
   public readonly denominator: JSBI
 
-  public constructor(numerator: BigintIsh, denominator: BigintIsh = ONE) {
-    this.numerator = parseBigintIsh(numerator)
-    this.denominator = parseBigintIsh(denominator)
+  public constructor(numerator: BigintIsh, denominator: BigintIsh = JSBI.BigInt(1)) {
+    this.numerator = JSBI.BigInt(numerator)
+    this.denominator = JSBI.BigInt(denominator)
   }
 
   // performs floor division
@@ -47,7 +45,7 @@ export default class Fraction {
   }
 
   public add(other: Fraction | BigintIsh): Fraction {
-    const otherParsed = other instanceof Fraction ? other : new Fraction(parseBigintIsh(other))
+    const otherParsed = other instanceof Fraction ? other : new Fraction(JSBI.BigInt(other))
     if (JSBI.equal(this.denominator, otherParsed.denominator)) {
       return new Fraction(JSBI.add(this.numerator, otherParsed.numerator), this.denominator)
     }
@@ -61,7 +59,7 @@ export default class Fraction {
   }
 
   public subtract(other: Fraction | BigintIsh): Fraction {
-    const otherParsed = other instanceof Fraction ? other : new Fraction(parseBigintIsh(other))
+    const otherParsed = other instanceof Fraction ? other : new Fraction(JSBI.BigInt(other))
     if (JSBI.equal(this.denominator, otherParsed.denominator)) {
       return new Fraction(JSBI.subtract(this.numerator, otherParsed.numerator), this.denominator)
     }
@@ -75,7 +73,7 @@ export default class Fraction {
   }
 
   public lessThan(other: Fraction | BigintIsh): boolean {
-    const otherParsed = other instanceof Fraction ? other : new Fraction(parseBigintIsh(other))
+    const otherParsed = other instanceof Fraction ? other : new Fraction(JSBI.BigInt(other))
     return JSBI.lessThan(
       JSBI.multiply(this.numerator, otherParsed.denominator),
       JSBI.multiply(otherParsed.numerator, this.denominator)
@@ -83,7 +81,7 @@ export default class Fraction {
   }
 
   public equalTo(other: Fraction | BigintIsh): boolean {
-    const otherParsed = other instanceof Fraction ? other : new Fraction(parseBigintIsh(other))
+    const otherParsed = other instanceof Fraction ? other : new Fraction(JSBI.BigInt(other))
     return JSBI.equal(
       JSBI.multiply(this.numerator, otherParsed.denominator),
       JSBI.multiply(otherParsed.numerator, this.denominator)
@@ -91,7 +89,7 @@ export default class Fraction {
   }
 
   public greaterThan(other: Fraction | BigintIsh): boolean {
-    const otherParsed = other instanceof Fraction ? other : new Fraction(parseBigintIsh(other))
+    const otherParsed = other instanceof Fraction ? other : new Fraction(JSBI.BigInt(other))
     return JSBI.greaterThan(
       JSBI.multiply(this.numerator, otherParsed.denominator),
       JSBI.multiply(otherParsed.numerator, this.denominator)
@@ -99,7 +97,7 @@ export default class Fraction {
   }
 
   public multiply(other: Fraction | BigintIsh): Fraction {
-    const otherParsed = other instanceof Fraction ? other : new Fraction(parseBigintIsh(other))
+    const otherParsed = other instanceof Fraction ? other : new Fraction(JSBI.BigInt(other))
     return new Fraction(
       JSBI.multiply(this.numerator, otherParsed.numerator),
       JSBI.multiply(this.denominator, otherParsed.denominator)
@@ -107,7 +105,7 @@ export default class Fraction {
   }
 
   public divide(other: Fraction | BigintIsh): Fraction {
-    const otherParsed = other instanceof Fraction ? other : new Fraction(parseBigintIsh(other))
+    const otherParsed = other instanceof Fraction ? other : new Fraction(JSBI.BigInt(other))
     return new Fraction(
       JSBI.multiply(this.numerator, otherParsed.denominator),
       JSBI.multiply(this.denominator, otherParsed.numerator)

@@ -19,7 +19,7 @@ export const _998 = JSBI.BigInt(998)
 export const _1000 = JSBI.BigInt(1000)
 
 // exports for external consumption
-export type BigintIsh = bigint | JSBI | number | string
+export type BigintIsh = JSBI | number | string
 
 export enum ChainId {
   MAINNET = 1,
