@@ -1,5 +1,5 @@
 import { Token, WETH9, ChainId, TokenAmount, ETHER } from 'easybake-sdk-core'
-import { Pair, Route } from './index'
+import { Pair, Route } from '../src/entities/index'
 
 describe('Route', () => {
   const token0 = new Token(ChainId.MAINNET, '0x0000000000000000000000000000000000000001', 18, 't0')

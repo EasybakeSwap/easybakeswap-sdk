@@ -1,6 +1,6 @@
-import { Pair } from './pair'
-import { Route } from './route'
-import { Trade } from './trade'
+import { Pair } from '../src/entities/pair'
+import { Route } from '../src/entities/route'
+import { Trade } from '../src/entities/trade'
 import JSBI from 'jsbi'
 import { ChainId, ETHER, CurrencyAmount, Percent, Token, TokenAmount, TradeType, WETH9 } from 'easybake-sdk-core'
 

@@ -1,4 +1,4 @@
-import { INIT_CODE_HASH } from './constants'
+import { INIT_CODE_HASH } from '../src/constants'
 
 import { bytecode } from 'easybake-swap-core/build/EasyBakePair.json'
 import { keccak256 } from '@ethersproject/solidity'

@@ -1,7 +1,7 @@
 import JSBI from 'jsbi'
 import invariant from 'tiny-invariant'
 import { ChainId, WETH9 as _WETH9, TradeType, Rounding, Token, TokenAmount } from 'easybake-sdk-core'
-import { Pair, Route, Trade } from '../index'
+import { Pair, Route, Trade } from '../src/index'
 
 const ADDRESSES = [
   '0x0000000000000000000000000000000000000001',

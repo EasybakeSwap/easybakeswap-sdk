@@ -1,6 +1,6 @@
 import JSBI from 'jsbi'
-import { Pair, Route, Trade } from './entities'
-import { Router } from './router'
+import { Pair, Route, Trade } from '../src/entities'
+import { Router } from '../src/router'
 import invariant from 'tiny-invariant'
 import { ChainId, CurrencyAmount, ETHER, Percent, Token, TokenAmount, WETH9 } from 'easybake-sdk-core'
 
