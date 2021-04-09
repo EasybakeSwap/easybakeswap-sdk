@@ -1,5 +1,4 @@
-import { ChainId } from '../src/constants'
-import { Token } from '../src/entities/token'
+import { ChainId, Token } from '../src'
 
 describe('Token', () => {
   const ADDRESS_ONE = '0x0000000000000000000000000000000000000001'
@@ -8,12 +7,6 @@ describe('Token', () => {
   describe('#equals', () => {
     it('fails if address differs', () => {
       expect(new Token(ChainId.MAINNET, ADDRESS_ONE, 18).equals(new Token(ChainId.MAINNET, ADDRESS_TWO, 18))).toBe(
-        false
-      )
-    })
-
-    it('false if chain id differs', () => {
-      expect(new Token(ChainId.ROPSTEN, ADDRESS_ONE, 18).equals(new Token(ChainId.MAINNET, ADDRESS_ONE, 18))).toBe(
         false
       )
     })

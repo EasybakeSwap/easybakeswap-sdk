@@ -1,7 +1,7 @@
+import { Fraction } from '../src'
 import JSBI from 'jsbi'
-import Fraction from '../src/entities/fractions/fraction'
 
-describe('Fraction', () => {
+describe.only('Fraction', () => {
   describe('#quotient', () => {
     it('floor division', () => {
       expect(new Fraction(JSBI.BigInt(8), JSBI.BigInt(3)).quotient).toEqual(JSBI.BigInt(2)) // one below

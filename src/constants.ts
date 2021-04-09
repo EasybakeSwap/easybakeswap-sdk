@@ -19,14 +19,11 @@ export const _998 = JSBI.BigInt(998)
 export const _1000 = JSBI.BigInt(1000)
 
 // exports for external consumption
-export type BigintIsh = JSBI | number | string
+export type BigintIsh = JSBI | bigint | string
 
 export enum ChainId {
   MAINNET = 1,
-  ROPSTEN = 3,
-  RINKEBY = 4,
-  GÖRLI = 5,
-  KOVAN = 42
+  RINKEBY = 4
 }
 
 export enum TradeType {
@@ -50,4 +47,4 @@ export const SOLIDITY_TYPE_MAXIMA = {
   [SolidityType.uint256]: JSBI.BigInt('0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff')
 }
 
-export const MaxUint256 = JSBI.BigInt('0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff')
+// export const MaxUint256 = JSBI.BigInt('0xffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff')

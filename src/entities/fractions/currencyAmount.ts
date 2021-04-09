@@ -1,18 +1,17 @@
-import JSBI from 'jsbi'
 import { currencyEquals } from '../token'
 import { Currency, ETHER } from '../currency'
 import invariant from 'tiny-invariant'
+import JSBI from 'jsbi'
 import _Big from 'big.js'
 import toFormat from 'toformat'
 
 import { BigintIsh, Rounding, TEN, SolidityType } from '../../constants'
-import { validateSolidityTypeInstance } from '../../utils/validateSolidityTypeInstance'
-import { parseBigintIsh } from '../../utils/parseBigintIsh'
-import Fraction from './fraction'
+import { parseBigintIsh, validateSolidityTypeInstance } from '../../utils'
+import { Fraction } from './fraction'
 
 const Big = toFormat(_Big)
 
-export default class CurrencyAmount extends Fraction {
+export class CurrencyAmount extends Fraction {
   public readonly currency: Currency
 
   /**

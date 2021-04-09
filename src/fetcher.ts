@@ -1,8 +1,7 @@
-
 import { Contract } from '@ethersproject/contracts'
 import { getNetwork } from '@ethersproject/networks'
 import { getDefaultProvider } from '@ethersproject/providers'
-import TokenAmount from './entities/fractions/tokenAmount'
+import { TokenAmount } from './entities/fractions/tokenAmount'
 import { Pair } from './entities/pair'
 import IEasyBakePair from 'easybake-swap-core/build/IEasyBakePair.json'
 import invariant from 'tiny-invariant'
