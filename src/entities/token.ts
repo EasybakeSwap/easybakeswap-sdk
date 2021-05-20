@@ -64,11 +64,5 @@ export const WETH = {
     'WETH',
     'Wrapped ETH'
   ),
-  [ChainId.RINKEBY]: new Token(
-    ChainId.RINKEBY,
-    '0xc778417E063141139Fce010982780140Aa0cD5Ab',
-    18,
-    'WETH',
-    'Wrapped ETH'
-  ),
+  [ChainId.RINKEBY]: new Token(ChainId.RINKEBY, '0xc778417E063141139Fce010982780140Aa0cD5Ab', 18, 'WETH', 'Wrapped ETH')
 }
