@@ -5612,10 +5612,10 @@ easybake-sdk-core@^1.1.0:
     tiny-warning "^1.0.3"
     toformat "^2.0.0"
 
-easybake-swap-core@^0.2.1:
-  version "0.2.1"
-  resolved "https://registry.yarnpkg.com/easybake-swap-core/-/easybake-swap-core-0.2.1.tgz#f46303b9178a4c90a43e4057a12a974485e137b5"
-  integrity sha512-cm20++1fpWx0EgMIeiRgqwhls5PLj8Xad8k4NZQ8+s8XdkIOkBQmSN0B8h+hBv3CWTzjdoef32TTDxZ70g5kwQ==
+easybake-swap-core@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/easybake-swap-core/-/easybake-swap-core-1.0.0.tgz#e7fb0af40d49b87cbcdc04e69249db3650cf5705"
+  integrity sha512-YUU2J3OD7M86SUPv/VkclMXzVTcmDPrXTPMe5NpXotob0SbJi8Ndq6kEyeiT5jwvTgt/KvSJUyuzkWmXsW7XNQ==
   dependencies:
     truffle "^5.2.6"
     truffle-flattener "^1.4.4"
