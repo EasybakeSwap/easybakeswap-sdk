@@ -1,7 +1,7 @@
 {
   "name": "easybakeswap-sdk",
   "license": "MIT",
-  "version": "3.4.0",
+  "version": "3.5.0",
   "description": "🛠 An SDK for building applications on top of EasyBakeSwap",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
@@ -17,6 +17,7 @@
   "module": "dist/sdk.esm.js",
   "scripts": {
     "lint": "tsdx lint src test",
+    "lint:fix": "tsdx lint src test --fix",
     "build": "tsdx build",
     "start": "tsdx watch",
     "test": "tsdx test",
@@ -28,7 +29,6 @@
     "@ethersproject/providers": "^5.1.0",
     "@ethersproject/solidity": "^5.0.0",
     "decimal.js-light": "^2.5.1",
-    "easybake-sdk-core": "^1.1.0",
     "easybake-swap-core": "^1.0.0",
     "jsbi": "^3.1.4",
     "tiny-invariant": "^1.1.0",

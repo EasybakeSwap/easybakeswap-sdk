@@ -29,11 +29,11 @@ export interface TradeOptions {
 }
 
 /**
- * The parameters to use in the call to the Uniswap V2 Router to execute a trade.
+ * The parameters to use in the call to the Makiswap Router to execute a trade.
  */
 export interface SwapParameters {
   /**
-   * The method to call on the Uniswap V2 Router.
+   * The method to call on the Makiswap Router.
    */
   methodName: string
   /**
@@ -53,7 +53,7 @@ function toHex(currencyAmount: CurrencyAmount) {
 const ZERO_HEX = '0x0'
 
 /**
- * Represents the EasyBake Router and has static methods for helping execute trades.
+ * Represents the Makiswap Router, and has static methods for helping execute trades.
  */
 export abstract class Router {
   /**
