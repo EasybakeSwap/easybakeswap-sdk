@@ -5,7 +5,7 @@ import { TokenAmount } from './entities/fractions/tokenAmount'
 import { Pair } from './entities/pair'
 import IEasyBakePair from 'easybake-swap-core/build/IEasyBakePair.json'
 import invariant from 'tiny-invariant'
-import HRC20 from './abis/ERC20.json'
+import ERC20 from './abis/ERC20.json'
 import { ChainId } from './constants'
 import { Token } from './entities/token'
 
@@ -42,7 +42,7 @@ export abstract class Fetcher {
     const parsedDecimals =
       typeof TOKEN_DECIMALS_CACHE?.[chainId]?.[address] === 'number'
         ? TOKEN_DECIMALS_CACHE[chainId][address]
-        : await new Contract(address, HRC20, provider).decimals().then((decimals: number): number => {
+        : await new Contract(address, ERC20, provider).decimals().then((decimals: number): number => {
             TOKEN_DECIMALS_CACHE = {
               ...TOKEN_DECIMALS_CACHE,
               [chainId]: {
