@@ -12,16 +12,16 @@ describe('constants', () => {
     // it('matches computed bytecode hash', () => {
     //   expect(COMPUTED_INIT_CODE_HASH).toEqual(INIT_CODE_HASH)
     // })
-    //TODO: Replace with real EasyBakeSwap.json
+    //TODO: Replace with real EasyBakePair.json
     it('matches computed bytecode hash', () => {
       expect(INIT_CODE_HASH).toEqual('0xce44eb42197293184ca965286dc45bc614fc721cc6115a07f51f462815cadf35')
     })
   })
 })
 
-// import { INIT_CODE_HASH } from './constants'
+// import { INIT_CODE_HASH } from '../src/constants'
 
-// import { bytecode } from '@uniswap/v2-core/build/UniswapV2Pair.json'
+// import { bytecode } from 'easybake-swap-core/build/EasyBakePair.json'
 // import { keccak256 } from '@ethersproject/solidity'
 
 // // this _could_ go in constants, except that it would cost every consumer of the sdk the CPU to compute the hash
